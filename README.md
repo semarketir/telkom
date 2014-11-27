@@ -91,7 +91,7 @@ telkomObj.upoint.generate({ /* optionsparams */ }, function( err ){}, function( 
 //UPoint - end
 ```
 
-API UPoint
+API Payment
 ```javascript
 //Payment - start
 telkomObj.payment.tmoney({ /* optionsparams */ }, function( err ){}, function( result){ });
@@ -100,7 +100,7 @@ telkomObj.payment.checkstatusfinpay195({ /* optionsparams */ }, function( err ){
 //Payment - end
 ```
 
-Kalau mau parameter aslinya dari API Telkom, pake .oriparam({ original parameter dimari });
+Kalau mau pake parameter aslinya dari API Telkom, pake .oriparam({ original parameter dimari });
 ```javascript
 //Payment - start
 //Send EMail with Original Params - start
