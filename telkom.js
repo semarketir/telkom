@@ -14,6 +14,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 	
 	var telkom = function( oauth_access_token, oauth_access_token_secret ){
 		
+		var _original_params = undefined;
+		
 		//error handling response API - start
 		var doHandlerErrAPI = function( apiType, respData ){
 			//ada ide buat parsing? :-))
@@ -23,7 +25,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		
 		//request ke servernya - start
 		var doRequestAPI = function( objCustom, url, input, fnErrorTelkom, fnSuccessTelkom ){
-			var bodyPost = JSON.stringify( input );
+			var bodyPost = JSON.stringify( ( _original_params !== undefined ? _original_params : input ) );
+			_original_params = undefined;
 			oauth.post( url, oauth_access_token, oauth_access_token_secret, bodyPost, "application/json", function (errorX, dataX, responseX) {
 				if( errorX ) {
 					fnErrorTelkom( errorX );
@@ -45,7 +48,7 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 				sendEmail:{
 					to		: input['to'],
 					subject	: input['subject'],
-					subject	: input['content']
+					content	: input['content']
 				}
 			};
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/sendEmail/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
@@ -436,7 +439,14 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		};
 		//API Payment - End
 		
-		return {
+		//original parameter - Start
+		var oriParams = function( params ){
+			_original_params = params;
+			return this;
+		};
+		//original parameter - End
+		
+		var _available_method = {
 			sms 		: {
 				send : sms_single,
 				bulk : sms_bulk
@@ -462,8 +472,11 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 				tmoney 					: payment_tmoney,
 				finpay195 				: payment_finpay195,
 				checkstatusfinpay195 	: payment_checkstatusfinpay195,
-			}
+			},
+			oriparams	: oriParams
 		};
+		
+		return _available_method;
 	};
 	
 	var oauth = new OAuth.OAuth(

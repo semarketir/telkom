@@ -91,13 +91,33 @@ telkomObj.upoint.generate({ /* optionsparams */ }, function( err ){}, function( 
 //UPoint - end
 ```
 
-```javascript
 API UPoint
+```javascript
 //Payment - start
 telkomObj.payment.tmoney({ /* optionsparams */ }, function( err ){}, function( result){ });
 telkomObj.payment.finpay195({ /* optionsparams */ }, function( err ){}, function( result){ });
 telkomObj.payment.checkstatusfinpay195({ /* optionsparams */ }, function( err ){}, function( result){ });
 //Payment - end
+```
+
+Kalau mau parameter aslinya dari API Telkom, pake .oriparam({ original parameter dimari });
+```javascript
+//Payment - start
+//Send EMail with Original Params - start
+telkomObj
+.oriparams({
+	sendEmail:{
+		to		: "semarketir@gmail.com",
+		subject	: "subject test via API Telkom parameter ori",
+		content	: "kontent test via API Telkom parameter ori"
+	}
+})
+.email({}, function( err ){
+	console.log( err )
+}, function( result ){
+	console.log( result.data );
+});
+//Send EMail with Original Params - end
 ```
 
 
