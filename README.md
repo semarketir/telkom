@@ -24,7 +24,7 @@ $ npm install telkom
 ```
 Require library
 ```javascript
-var telkom = require('./telkom'),
+var telkom = require('telkom'),
 	ConsumerKey = '',
 	ConsumerSecret = '';
 ```
