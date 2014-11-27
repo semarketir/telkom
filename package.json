@@ -1,0 +1,31 @@
+{
+	"name": "telkom",
+	"version": "1.0.0",
+	"description": "NodeJS API Telkom ( Indonesia )",
+	"main": "telkom.js",
+	"scripts": {
+		"test": "telkom-test"
+	},
+	"dependencies": {
+		"oauth": "0.9.7"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/semarketir/telkom"
+	},
+	"keywords": [
+		"API",
+		"Telkom",
+		"NodeJS",
+		"Indonesia"
+	],
+	"author": "Semar Ketir <semarketir@gmail.com> (http://semarketir.com/)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/semarketir/telkom/issues"
+	},
+	"engines" : {
+		"node" : ">=0.8.0"
+	},
+	"homepage": "https://github.com/semarketir/telkom"
+}
