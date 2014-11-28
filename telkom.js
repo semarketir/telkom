@@ -8,8 +8,7 @@
 	*
 */
 
-var OAuth = require('oauth');
-
+var OAuth = require('oauth')
 module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 	
 	var telkom = function( oauth_access_token, oauth_access_token_secret ){
@@ -27,7 +26,7 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		var doRequestAPI = function( objCustom, url, input, fnErrorTelkom, fnSuccessTelkom ){
 			var bodyPost = JSON.stringify( ( _original_params !== undefined ? _original_params : input ) );
 			_original_params = undefined;
-			oauth.post( url, oauth_access_token, oauth_access_token_secret, bodyPost, "application/json", function (errorX, dataX, responseX) {
+			/*oauth.post( url, oauth_access_token, oauth_access_token_secret, bodyPost, "application/json", function (errorX, dataX, responseX) {
 				if( errorX ) {
 					fnErrorTelkom( errorX );
 				}else{
@@ -37,12 +36,15 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 					};
 					fnSuccessTelkom( dataCallback );
 				}
-			});
+			});*/
+			console.log( bodyPost )
 		};
 		//request ke servernya - end
 		
 		//API EMail Telkom - Start
 		var email = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'email';
 			var bodyPost = {
 				sendEmail:{
@@ -57,6 +59,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		
 		//API SMS Telkom - Send - Start
 		var sms_single = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'sms';
 			var bodyPost = {
 				sendSMS:{
@@ -72,6 +76,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		
 		//API SMS Telkom - Bulk - Start
 		var sms_bulk = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'sms';
 			var bodyPost = {
 				smsBulk: {
@@ -85,6 +91,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		
 		//API TelkomID - Start
 		var telkomid_queryuserprofile = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				queryUserProfile:{
@@ -94,8 +102,10 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/queryUserProfile/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_activeuser = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
-			var activeUser = {
+			var bodyPost = {
 				activeUser:{
 					telkomID : input['tid']
 				}
@@ -103,6 +113,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/activeUser/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_resetpassword = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				resetPassword:{
@@ -115,6 +127,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/resetPassword/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_queryproductprofile = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				queryProductProfile:{
@@ -125,6 +139,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/queryProductProfile/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_deactivateuser = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				deactivateUser:{
@@ -134,6 +150,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/deactivateUser/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_createuserprofile = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				createUserProfile:{
@@ -192,6 +210,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/createUserProfile/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_changepassword = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				changePassword:{
@@ -206,6 +226,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/changePassword/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_searchuser = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				searchUser:{
@@ -215,6 +237,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/searchUser/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var telkomid_checkuserexist = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'telkomid';
 			var bodyPost = {
 				checkUserExist:{
@@ -227,6 +251,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		
 		//API UPoint - Start
 		var upoint_upointspeedy = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'upoint';
 			var bodyPost = {
 				upoint:{
@@ -241,6 +267,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/uPointSpeedy/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var upoint_upointtmoney = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'upoint';
 			var bodyPost = {
 				upoint:{
@@ -254,6 +282,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/uPointTmoney/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var upoint_upointgenerate = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'upoint';
 			var bodyPost = {
 				upoint:{
@@ -273,6 +303,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		
 		//API Payment - Start
 		var payment_tmoney = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'tmoney';
 			var bodyPost = {
 				tmoney:{
@@ -286,6 +318,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/tMoney/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var payment_finpay195 = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'finpay195';
 			var bodyPost = {
 				finPay195 : {
@@ -304,6 +338,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/finPay195/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var payment_checkstatusfinpay195 = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'checkstatusfinpay195';
 			var bodyPost = {
 				checkStatus : {
@@ -315,6 +351,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/checkStatusFinPay195/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var payment_cekstatusfinpaycc = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'cekstatusfinpaycc';
 			var bodyPost = {
 				checkStatus : {
@@ -326,6 +364,8 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 			doRequestAPI( this,  "http://sandbox.appprime.net/TemanDev/rest/finpayCC/cekStatus/", bodyPost, fnErrorTelkom, fnSuccessTelkom );
 		};
 		var payment_getbillfinpaycc = function( input, fnErrorTelkom, fnSuccessTelkom ){
+			if( typeof( input ) == "function" ) { fnSuccessTelkom = fnErrorTelkom; fnErrorTelkom = input; input = {}; };
+			
 			this._prefix = 'getbillfinpaycc';
 			var bodyPost = {
 				getBill : {

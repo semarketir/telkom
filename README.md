@@ -11,7 +11,7 @@ Library sederhana API Telkom buat NodeJS.
 
 Dokumentasi lengkap bisa ditemuin dimari : http://ask.bestapps.id/category/api-documentations/
 
-> API gak semuanya di test, ane cuman test buat SMS sama EMAIL aja. Tolong bantu test ya, sekalian push dimari, kayany masih banyak yang error :-))
+> API gak semuanya di test, ane cuman test buat SMS sama EMAIL aja. Tolong bantu test ya & sorry berantakan codenya, maklum newbie hehe, sekalian push dimari, kayany masih banyak yang error :-))
 
 Ok coba apa yang bisa diakuin sama library ini, silahkan cek.
 
@@ -100,7 +100,7 @@ telkomObj.payment.checkstatusfinpay195({ /* optionsparams */ }, function( err ){
 //Payment - end
 ```
 
-Kalau mau pake parameter aslinya dari API Telkom, pake .oriparam({ original parameter dimari });
+Kalau mau pake parameter aslinya dari API Telkom, pake .oriparams({ original parameter dimari });
 ```javascript
 //Payment - start
 //Send EMail with Original Params - start
@@ -112,7 +112,7 @@ telkomObj
 		content	: "kontent test via API Telkom parameter ori"
 	}
 })
-.email({}, function( err ){
+.email(function( err ){
 	console.log( err )
 }, function( result ){
 	console.log( result.data );
