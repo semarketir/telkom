@@ -26,7 +26,7 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 		var doRequestAPI = function( objCustom, url, input, fnErrorTelkom, fnSuccessTelkom ){
 			var bodyPost = JSON.stringify( ( _original_params !== undefined ? _original_params : input ) );
 			_original_params = undefined;
-			/*oauth.post( url, oauth_access_token, oauth_access_token_secret, bodyPost, "application/json", function (errorX, dataX, responseX) {
+			oauth.post( url, oauth_access_token, oauth_access_token_secret, bodyPost, "application/json", function (errorX, dataX, responseX) {
 				if( errorX ) {
 					fnErrorTelkom( errorX );
 				}else{
@@ -36,8 +36,7 @@ module.exports = function( ConsumerKey, ConsumerSecret, fnError, fnSuccess ){
 					};
 					fnSuccessTelkom( dataCallback );
 				}
-			});*/
-			console.log( bodyPost )
+			});
 		};
 		//request ke servernya - end
 		

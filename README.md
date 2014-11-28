@@ -124,6 +124,7 @@ telkomObj
 ### Todo's
 
  - Testing
+ - Dokumentasi
  - Error Handling - Response Status API dari Telkom
 
 License
