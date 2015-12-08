@@ -1,3 +1,5 @@
+# Unmaintained
+
 # NodeJS - API Telkom ( Indonesia )
 
 Library sederhana API Telkom buat NodeJS.
@@ -119,13 +121,6 @@ telkomObj
 });
 //Send EMail with Original Params - end
 ```
-
-
-### Todo's
-
- - Testing
- - Dokumentasi
- - Error Handling - Response Status API dari Telkom
 
 License
 ----
